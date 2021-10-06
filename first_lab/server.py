@@ -8,7 +8,7 @@ class Server:
 
     def __init__(self):
         try:
-            HOST = '192.168.31.242'
+            HOST = '127.0.0.1'
           
             PORT = 1025+9
             utf = 'utf-8'
@@ -84,7 +84,7 @@ class Server:
                 return "=Wrong input", counter, oper
 
             elif ';' in data:
-                arr = data.lower().split(';')
+                arr = data.split(';')
                 for i in arr:
                     if i.replace(' ', '') == '':
                         results += "Wrong input;"
@@ -154,7 +154,7 @@ count: {count}\n'
         return text + results
 
     def welcome_message(self):
-        welcome = '''MOM I'M A CALCULATOR\n'''
+        welcome = '''Send any basic math sequence and get a result back. \n Example: "2+2; 4/4;" and so on.\n'''
         return welcome
 
     def whoami(self):
