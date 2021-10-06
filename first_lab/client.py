@@ -5,27 +5,29 @@ import socket
 class Client:
 
     def __init__(self,):
-        HOST = '127.0.0.1'
-        PORT = 1025+9
+        try:
+            HOST = '127.0.0.1'
+            PORT = 1025+9
 
-        sock = socket.socket(
-            socket.AF_INET,
-            socket.SOCK_STREAM,
-        )
+            sock = socket.socket(
+                socket.AF_INET,
+                socket.SOCK_STREAM,
+            )
 
-        sock.connect((HOST, PORT))
-        data = sock.recv(256).decode('utf-8')
-        print(data)
-
-        while True:
-            sock.send(('=' + input('Send request:\n=')).encode('utf-8'))
+            sock.connect((HOST, PORT))
             data = sock.recv(256).decode('utf-8')
-            print('Answer:\n', data)
-            if "<STOP>" in data:
-                sock.close()
-                break
-        print("Connection closed.")
+            print(data)
 
+            while True:
+                sock.send(('=' + input('Send request:\n=')).encode('utf-8'))
+                data = sock.recv(256).decode('utf-8')
+                print('Answer:\n', data)
+                if "<STOP>" in data:
+                    sock.close()
+                    break
+            print("Connection closed.")
+        except Exception as e:
+            print(f"Happened exception: {e}")
     @staticmethod
     def reconnect():
         while True:

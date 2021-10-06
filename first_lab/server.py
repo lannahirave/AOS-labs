@@ -17,7 +17,7 @@ class Server:
             logging.basicConfig(filename="myServer.log",
                                 level=logging.INFO,
                                 format='%(asctime)s - %(levelname)s - %(message)s',
-                                filemode='w',
+                                filemode='a',
                                 )
 
             logging.info("Server started")
@@ -49,7 +49,7 @@ class Server:
                         break
                     answer, count, operations = self.process(
                         data[1:], count, operations)
-                    print(answer)
+                    print(f"Send answer:\n{answer}")
                     if answer is None:
                         logging.info("Process function broke at some moment.")
                         raise IOError
@@ -72,7 +72,7 @@ class Server:
                 print(f' !Exception {e}')
                 logging.warning(f'{e}')
             print("Connection closed.")
-            logging.info("Server stopped!")
+            logging.info("Server stopped!\n" + "#" * 10 + "\n")
 
     def process(self, data: str, count: int, operations: list):
         try:
@@ -154,7 +154,7 @@ count: {count}\n'
         return text + results
 
     def welcome_message(self):
-        welcome = '''Send any basic math sequence and get a result back. \n Example: "2+2; 4/4;" and so on.\n'''
+        welcome = '''Send any basic math sequence and get a result back.\n Example: "2+2; 4/4;" and so on.\n'''
         return welcome
 
     def whoami(self):
