@@ -121,7 +121,7 @@ class Server:
                     results += self.whoami()
                 elif ['stop'] == data.split():
                     results += '<STOP>;'
-                    return self.print_message(results, arr, counter), counter, oper
+                    return self.print_message(results, oper, counter), counter, oper
                 else:
                     for i in data:
                         if not (i.isdigit() or i in '+-*/= '):
